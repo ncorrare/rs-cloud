@@ -69,7 +69,7 @@ end
 
 execute 'rs-backup-agent-setup' do
     command "/usr/local/bin/driveclient --configure -u #{rsapikey['username']} -k #{rsapikey['key']}"
-    not_if "grep \"IsRegistered\"\ \:\ true /etc/driveclient/bootstrap.json"
+    not_if "test -f /etc/driveclient/cacert.pem"
 end
 
 service "driveclient" do
